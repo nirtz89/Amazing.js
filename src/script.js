@@ -15,7 +15,6 @@ class Amazing {
             var rect = el.getBoundingClientRect();
             var elemTop = rect.top;
             var elemBottom = rect.bottom;
-        
             var isVisible = elemTop < window.innerHeight && elemBottom >= 0;
             return isVisible;
         }
