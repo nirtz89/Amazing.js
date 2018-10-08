@@ -1,6 +1,12 @@
 class Amazing {
 
+    constructor(config = {}) {
+        this.config = config;
+        this.config.useClass = this.config.useClass || "amazing";
+    }
+
     init() {
+        var self = this;
         console.log("Amazing initiated");
 
         function isScrolledIntoView(el) {
@@ -13,12 +19,13 @@ class Amazing {
         }
         
         function scroll() {
-          var all_elements = document.querySelectorAll(".scroll");
+          var all_elements = document.querySelectorAll(`.${self.config.useClass}:not(.animated)`);
             all_elements.forEach((el)=>{
+              if (el.classList.contains("animated"))
+                    return true;
               if (isScrolledIntoView(el)) {
-               el.classList.add("animated");
-               el.classList.add("fadeIn");
-               el.style.visibility = "visible";
+               //el.classList.add("animated");
+               //el.style.visibility = "visible";
               }
             });
         }
