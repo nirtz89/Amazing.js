@@ -1,13 +1,15 @@
 class Amazing {
 
-    constructor(config = {}) {
+    constructor(config = {}, debug = false) {
         this.config = config;
         this.config.useClass = this.config.useClass || "amazing";
+        this.config.defaultAnimation = this.config.defaultAnimation || false;
     }
 
     init() {
         var self = this;
-        console.log("Amazing initiated");
+        if (self.debug)
+            console.log("Amazing initiated");
 
         function isScrolledIntoView(el) {
             var rect = el.getBoundingClientRect();
@@ -24,8 +26,10 @@ class Amazing {
               if (el.classList.contains("animated"))
                     return true;
               if (isScrolledIntoView(el)) {
-               //el.classList.add("animated");
-               //el.style.visibility = "visible";
+               var animation = el.dataset.animation || self.config.defaultAnimation;
+               el.classList.add("animated");
+               el.classList.add(animation);
+               el.style.visibility = "visible";
               }
             });
         }
