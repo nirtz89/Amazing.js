@@ -82,3 +82,71 @@ body, p {
 
 .amazing {
   visibility: hidden; }
+
+.animation-01s {
+  -webkit-animation-duration: 100ms !important;
+  animation-duration: 100ms !important; }
+
+.animation-015s {
+  -webkit-animation-duration: 150ms !important;
+  animation-duration: 150ms !important; }
+
+.animation-018s {
+  -webkit-animation-duration: 180ms !important;
+  animation-duration: 180ms !important; }
+
+.animation-02s {
+  -webkit-animation-duration: 200ms !important;
+  animation-duration: 200ms !important; }
+
+.animation-025s {
+  -webkit-animation-duration: 250ms !important;
+  animation-duration: 250ms !important; }
+
+.animation-05s {
+  -webkit-animation-duration: 500ms !important;
+  animation-duration: 500ms !important; }
+
+.animation-075s {
+  -webkit-animation-duration: 750ms !important;
+  animation-duration: 750ms !important; }
+
+.animation-1s {
+  -webkit-animation-duration: 1000ms !important;
+  animation-duration: 1000ms !important; }
+
+.animation-2s {
+  -webkit-animation-duration: 2000ms !important;
+  animation-duration: 2000ms !important; }
+
+.animation-3s {
+  -webkit-animation-duration: 3000ms !important;
+  animation-duration: 3000ms !important; }
+
+.animation-4s {
+  -webkit-animation-duration: 4000ms !important;
+  animation-duration: 4000ms !important; }
+
+.animation-5s {
+  -webkit-animation-duration: 5000ms !important;
+  animation-duration: 5000ms !important; }
+
+.animation-6s {
+  -webkit-animation-duration: 6000ms !important;
+  animation-duration: 6000ms !important; }
+
+.animation-7s {
+  -webkit-animation-duration: 7000ms !important;
+  animation-duration: 7000ms !important; }
+
+.animation-8s {
+  -webkit-animation-duration: 8000ms !important;
+  animation-duration: 8000ms !important; }
+
+.animation-9s {
+  -webkit-animation-duration: 9000ms !important;
+  animation-duration: 9000ms !important; }
+
+.animation-10s {
+  -webkit-animation-duration: 10000ms !important;
+  animation-duration: 10000ms !important; }
