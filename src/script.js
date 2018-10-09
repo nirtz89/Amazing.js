@@ -23,21 +23,16 @@ class Amazing {
             return isVisible;
         }
 
-        function setTimeoutToFinish(el,time) {
-            // Sets a timeout for the animation to finish, when it finishes - add a class of "finished"
+        function setAnimation(el, speed, animation, delay) {
             setTimeout(()=>{
                 el.classList.add("finished");
-            },time*1000);
-            // We are converting the time into milliseconds
-        }
-
-        function setAnimation(el, speed, animation, delay) {
+            },parseFloat(speed)*1000);
+            speed = (isNaN(speed) && speed.indexOf(".")>-1) ? speed.replace(".","") : speed;
             setTimeout(()=>{
                 el.classList.add(`animation-${speed}s`);
                 el.classList.add("animated");
                 el.classList.add(animation);
                 el.style.visibility = "visible";
-                setTimeoutToFinish(el,speed);
             },delay)
         }
         
@@ -52,7 +47,6 @@ class Amazing {
                delay *= 1000;
                var speed = el.dataset.speed || 1;
                var after = el.dataset.after || false;
-               speed = (speed.indexOf(".")>-1) && speed.replace(".","");
                speed = self.config.defaultSpeed || speed;
                if (after) {
                    // If after attribute exists on this element, check every 50ms if the element you're waiting for has finished, if it has - start the animation
@@ -60,15 +54,13 @@ class Amazing {
                    obj[after] = {};
                    obj[after].waiting = 0;
                    obj[after].interval = setInterval(()=>{
+                       obj[after].waiting += 50;
+                       console.log(obj[after].waiting);
                        if (document.querySelector(`.${after}`).className.split(/\s+/).indexOf("finished") !== -1 || obj[after].waiting >= 10000) {
-
-                            /** TODO:REMOVE THIS */
-                            console.log("Checking...");
-
                             // If you've set the animation, stop
                             // Also, if the element is waiting for more than 10 seconds, stop the interval
                             setAnimation(el, speed, animation, delay);
-                            clearTimeout(self.intervalWarehouse[after]);
+                            clearTimeout(self.intervalWarehouse.find((e)=>e.hasOwnProperty(after))[after].interval);
                             if (self.debug && obj[after].waiting >= 10000) {
                                 console.error("Woha! I've been waiting for an animation to finish for over 10 seconds. Stopping the interval");
                             }

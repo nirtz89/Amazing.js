@@ -26,17 +26,18 @@
     </div>
     <div class="scrolled-down-div-2">
         <ul>
-            <li class="amazing s1" data-speed="0.5">Completly FREE (And always will be)</li>
-            <li class="amazing s2" data-speed="0.5" data-after="s1">Easy to install</li>
-            <li class="amazing s3" data-speed="0.5" data-after="s2">Even easier to customize</li>
-            <li class="amazing s4" data-speed="0.5" data-after="s3">Did I say it was free?</li>
+            <li class="amazing s1" data-speed="0.15" data-animation="fadeIn">Completly FREE (And always will be)</li>
+            <li class="amazing s2" data-speed="0.15" data-animation="fadeIn" data-after="s1">Easy to install</li>
+            <li class="amazing s3" data-speed="0.15" data-animation="fadeIn" data-after="s2">Even easier to customize</li>
+            <li class="amazing s4" data-speed="0.15" data-animation="fadeIn" data-after="s3">Did I say it was free?</li>
         </ul>
     </div>
     <script>
         var amazing = new Amazing(
             {
                 defaultAnimation : "bounceInDown"
-            }
+            },
+            true
         );
         amazing.init();
     </script>
