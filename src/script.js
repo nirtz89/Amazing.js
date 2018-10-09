@@ -1,6 +1,7 @@
 class Amazing {
 
     constructor(config = {}, debug = false) {
+        this.intervalWarehouse = [];
         this.config = config;
         this.config.useClass = this.config.useClass || "amazing";
         this.config.defaultAnimation = this.config.defaultAnimation || false;
@@ -29,6 +30,16 @@ class Amazing {
             },time*1000);
             // We are converting the time into milliseconds
         }
+
+        function setAnimation(el, speed, animation, delay) {
+            setTimeout(()=>{
+                el.classList.add(`animation-${speed}s`);
+                el.classList.add("animated");
+                el.classList.add(animation);
+                el.style.visibility = "visible";
+                setTimeoutToFinish(el,speed);
+            },delay)
+        }
         
         function scroll() {
             // Everytime the page is scrolled
@@ -38,16 +49,36 @@ class Amazing {
               if (isScrolledIntoView(el)) {
                var animation = el.dataset.animation || self.config.defaultAnimation;
                var delay = el.dataset.delay || 0;
+               delay *= 1000;
                var speed = el.dataset.speed || 1;
-               speed = speed.replace(".","");
+               var after = el.dataset.after || false;
+               speed = (speed.indexOf(".")>-1) && speed.replace(".","");
                speed = self.config.defaultSpeed || speed;
-                setTimeout(()=>{
-                    el.classList.add(`animation-${speed}s`);
-                    el.classList.add("animated");
-                    el.classList.add(animation);
-                    el.style.visibility = "visible";
-                    setTimeoutToFinish(el,speed);
-                },delay)
+               if (after) {
+                   // If after attribute exists on this element, check every 50ms if the element you're waiting for has finished, if it has - start the animation
+                   let obj = {};
+                   obj[after] = {};
+                   obj[after].waiting = 0;
+                   obj[after].interval = setInterval(()=>{
+                       if (document.querySelector(`.${after}`).className.split(/\s+/).indexOf("finished") !== -1 || obj[after].waiting >= 10000) {
+
+                            /** TODO:REMOVE THIS */
+                            console.log("Checking...");
+
+                            // If you've set the animation, stop
+                            // Also, if the element is waiting for more than 10 seconds, stop the interval
+                            setAnimation(el, speed, animation, delay);
+                            clearTimeout(self.intervalWarehouse[after]);
+                            if (self.debug && obj[after].waiting >= 10000) {
+                                console.error("Woha! I've been waiting for an animation to finish for over 10 seconds. Stopping the interval");
+                            }
+                       }
+                   },50)
+                   self.intervalWarehouse.push(obj);
+               }
+               else {
+                   setAnimation(el, speed, animation, delay);
+               }
               }
             });
         }
