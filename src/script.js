@@ -26,9 +26,12 @@ class Amazing {
                     return true;
               if (isScrolledIntoView(el)) {
                var animation = el.dataset.animation || self.config.defaultAnimation;
-               el.classList.add("animated");
-               el.classList.add(animation);
-               el.style.visibility = "visible";
+               var delay = el.dataset.delay || 0;
+                setTimeout(()=>{
+                    el.classList.add("animated");
+                    el.classList.add(animation);
+                    el.style.visibility = "visible";
+                },delay)
               }
             });
         }

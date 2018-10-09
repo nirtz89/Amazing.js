@@ -9,6 +9,7 @@ gulp.task('sass', function () {
   });
 
 gulp.task('stream', function() {
+  gulp.start('sass');
   return gulp.watch(['style/*.scss'], function() {
       gulp.start('sass');
   });
