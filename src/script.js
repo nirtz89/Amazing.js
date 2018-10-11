@@ -6,6 +6,7 @@ class Amazing {
         this.config.useClass = this.config.useClass || "amazing";
         this.config.defaultAnimation = this.config.defaultAnimation || false;
         this.config.defaultSpeed = this.config.defaultSpeed || false;
+        this.debug = debug;
     }
 
     init() {
@@ -38,7 +39,7 @@ class Amazing {
         
         function scroll() {
             // Everytime the page is scrolled
-          var all_elements = document.querySelectorAll(`.${self.config.useClass}:not(.animated)`);
+          var all_elements = document.querySelectorAll(`.${self.config.useClass}:not(.finished)`);
                 // Catch all elements with the chosen class
             all_elements.forEach((el)=>{
               if (isScrolledIntoView(el)) {
@@ -48,23 +49,27 @@ class Amazing {
                var speed = el.dataset.speed || 1;
                var after = el.dataset.after || false;
                speed = self.config.defaultSpeed || speed;
-               if (after) {
+               if (after && el.className.indexOf("finished")==-1) {
                    // If after attribute exists on this element, check every 50ms if the element you're waiting for has finished, if it has - start the animation
                    let obj = {};
                    obj[after] = {};
                    obj[after].waiting = 0;
+                   if (document.querySelectorAll(`.${after}`).length===0)
+                   // If the "after" element does not exist
+                    return false;
                    obj[after].interval = setInterval(()=>{
-                       obj[after].waiting += 50;
-                       console.log(obj[after].waiting);
-                       if (document.querySelector(`.${after}`).className.split(/\s+/).indexOf("finished") !== -1 || obj[after].waiting >= 10000) {
-                            // If you've set the animation, stop
-                            // Also, if the element is waiting for more than 10 seconds, stop the interval
-                            setAnimation(el, speed, animation, delay);
-                            clearTimeout(self.intervalWarehouse.find((e)=>e.hasOwnProperty(after))[after].interval);
-                            if (self.debug && obj[after].waiting >= 10000) {
-                                console.error("Woha! I've been waiting for an animation to finish for over 10 seconds. Stopping the interval");
-                            }
+                       if (self.debug)
+                            console.log("Tick..." + obj[after].waiting);
+                       // If it does exist, start an interval and wait for it
+                       if (document.querySelector(`.${after}`).className.indexOf("finished")>-1
+                            || obj[after].waiting >= 10000) {
+                           // If the after element has finished animating, we can start the animation
+                           // If it has been 10 seconds and the other element did not reveal itself, kill the interval and start the animation anyways
+                           setAnimation(el, speed, animation, delay);
+                           // Stop the interval if we started the animation
+                           clearInterval(obj[after].interval);
                        }
+                       obj[after].waiting += 50;
                    },50)
                    self.intervalWarehouse.push(obj);
                }
