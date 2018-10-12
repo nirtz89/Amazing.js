@@ -27,14 +27,14 @@ class Amazing {
         function setAnimation(el, speed, animation, delay) {
             setTimeout(()=>{
                 el.classList.add("finished");
-            },parseFloat(speed)*1000);
+            },parseFloat(speed+delay)*1000);
             speed = (isNaN(speed) && speed.indexOf(".")>-1) ? speed.replace(".","") : speed;
             setTimeout(()=>{
                 el.classList.add(`animation-${speed}s`);
                 el.classList.add("animated");
                 el.classList.add(animation);
                 el.style.visibility = "visible";
-            },delay)
+            },delay*1000)
         }
         
         function scroll() {
@@ -45,7 +45,6 @@ class Amazing {
               if (isScrolledIntoView(el)) {
                var animation = el.dataset.animation || self.config.defaultAnimation;
                var delay = el.dataset.delay || 0;
-               delay *= 1000;
                var speed = el.dataset.speed || 1;
                var after = el.dataset.after || false;
                speed = self.config.defaultSpeed || speed;
