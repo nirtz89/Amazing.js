@@ -21,7 +21,7 @@ amazing.init();
 ```
 
 ### Watch the magic happens
-![](blob:https://imgur.com/b137675e-a15b-4021-84ab-9b3df271c645)
+![](https://i.imgur.com/jqqpti1.gif)
 
 ## Features
 
