@@ -29,7 +29,11 @@ amazing.init();
 * Pick from a variety of animations (all from the awesome Animate.css).
 * Set delay, speed and animation for each object independently.
 * Or create these by default when creating the Amazing.js object.
-* Tiny.
+* Tiny! 2Kb minified.
+
+## Dependencies
+
+* [Animate.css](https://daneden.github.io/animate.css/)
 
 
 ## Getting Started
