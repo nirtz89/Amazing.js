@@ -9,7 +9,7 @@ Reveal animation on scrolled-over elements, easy as that!
 <h1>Amazing.js</h1>
 ```
 
-### Add required proprties
+### Add required properties
 ```html
 <h1 class="amazing" data-animation="fadeIn">Amazing.js</h1>
 ```
