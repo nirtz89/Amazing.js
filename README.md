@@ -9,7 +9,7 @@ Reveal animation on scrolled-over elements, easy as that!
 <h1>Amazing.js</h1>
 ```
 
-### Add required proprties
+### Add required properties
 ```html
 <h1 class="amazing" data-animation="fadeIn">Amazing.js</h1>
 ```
@@ -21,7 +21,7 @@ amazing.init();
 ```
 
 ### Watch the magic happens
-![](https://i.imgur.com/6wPl4zH.gif)
+![](https://i.imgur.com/jqqpti1.gif)
 
 ## Features
 
@@ -29,7 +29,11 @@ amazing.init();
 * Pick from a variety of animations (all from the awesome Animate.css).
 * Set delay, speed and animation for each object independently.
 * Or create these by default when creating the Amazing.js object.
-* Tiny.
+* Tiny! 2Kb minified.
+
+## Dependencies
+
+* [Animate.css](https://daneden.github.io/animate.css/)
 
 
 ## Getting Started
