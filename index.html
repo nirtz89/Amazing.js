@@ -14,7 +14,7 @@
 </head>
 <body>
     <div class="scroll-down-div">
-        <h1>Amazing.js</h1>
+        <h1 class="amazing">Amazing.js</h1>
         <h2>Reveal animation on scrolled-over elements, easy as that!</h2>
         <pre><code>// Set an instance and initialize it
 const amazing = new Amazing();
@@ -58,7 +58,8 @@ amazing.init();</code></pre>
     <script>
         var amazing = new Amazing(
             {
-                defaultAnimation : "bounceInDown"
+                defaultAnimation : "fadeIn",
+                defaultDelay: 2
             },
             true
         );
