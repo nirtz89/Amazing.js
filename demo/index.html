@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400" rel="stylesheet">
+	<link rel="stylesheet" href="assets/css/bootstrap.min.css">
+	<link rel="stylesheet" href="style.css">
+	<link rel="stylesheet" href="../style/animate.css">
+	<link rel="stylesheet" href="../style/style.css">
+	<title>Amazing.js</title>
+</head>
+<body>
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+				<a class="navbar-brand" href="#">Amazing.js</a>
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+				  <span class="navbar-toggler-icon"></span>
+				</button>
+			  
+				<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				  <ul class="navbar-nav mr-auto">
+					<li class="nav-item active">
+					  <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+					</li>
+					<li class="nav-item">
+					  <a class="nav-link" href="#">Usage</a>
+					</li>
+					<li class="nav-item">
+					  <a class="nav-link" href="#">About</a>
+					</li>
+				</div>
+			  </nav>
+			  <main>
+				<h1 class="amazing amazing-title" data-animation="fadeInDown" data-delay="0.25">Amazing.js</h1>
+				<h2 class="amazing" data-after="title" data-animation="fadeInUp">Revel Animations Plugin</h2>
+				<img class="mountain-1 amazing" data-animation="fadeInUp" data-mobile="false" src="https://www.mountainfilmalliance.org/wp-content/themes/iamf/images/mountains.png" alt="">
+			  </main>
+	<script src="assets/js/bootstrap.min.js"></script>
+	<script src="../dist/script.js"></script>
+	<script>
+        const amazing = new Amazing(
+            {
+                defaultAnimation : "fadeIn",
+                defaultDelay: 0
+            },
+            true
+        );
+        amazing.init();	
+	</script>
+</body>
+</html>

@@ -18,6 +18,7 @@
   "homepage": "https://github.com/nirtz89/wat#readme",
   "dependencies": {
     "gulp": "^3.9.1",
+    "gulp-minify": "^3.1.0",
     "gulp-sass": "^4.0.1",
     "gulp-watch": "^5.0.1"
   }
