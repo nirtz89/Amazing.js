@@ -1,6 +1,6 @@
 ## Amazing.js
 
-Reveal animation on scrolled-over elements, easy as that!
+Revel Animations Plugin
 
 ## Quick Start
 

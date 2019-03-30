@@ -4,8 +4,8 @@ class Amazing {
         this.intervalWarehouse = [];
         this.config = config;
         this.config.useClass = this.config.useClass || "amazing";
-        this.config.defaultAnimation = this.config.defaultAnimation || false;
-        this.config.defaultSpeed = this.config.defaultSpeed || false;
+        this.config.defaultAnimation = this.config.defaultAnimation || "fadeIn";
+        this.config.defaultSpeed = this.config.defaultSpeed || 0.25;
         this.config.defaultDelay = this.config.defaultDelay || 0;
         this.config.allowMobile = (this.config.allowMobile == false) ? false : true;
         this.debug = debug;
@@ -44,7 +44,7 @@ class Amazing {
             return isVisible;
         }
 
-        function setAnimation(el,delay_of_after_el = 0) {
+        function setAnimation(el) {
             let animation = el.dataset.animation || self.config.defaultAnimation;
             let delay = parseFloat(el.dataset.delay) || self.config.defaultDelay;
             let speed = parseFloat(el.dataset.speed) || self.config.defaultSpeed;
@@ -52,20 +52,22 @@ class Amazing {
             if (mobile == "false" && self.isMobile())
                 return;
             setTimeout(()=>{
+                // Turn animation element to "finished" state
                 el.classList.add("finished");
                 // Find elements waiting for this to finish and activate animation on them
-                if (el.className.indexOf("amazing-")>-1) {
-                    let amazingClass = el.className.split(" ").filter((v)=>v.indexOf("amazing-")>-1)[0].replace("amazing-","");
+                if (el.className.indexOf(`${self.config.useClass}-`)>-1) {
+                    let amazingClass = el.className.split(" ").filter((v)=>v.indexOf(`${self.config.useClass}-`)>-1)[0].replace(`${self.config.useClass}-`,"");
                     let allAfter = document.querySelectorAll(`[data-after="${amazingClass}"]`);
-                    allAfter.forEach(after_element => setAnimation(after_element, speed+delay));
+                    allAfter.forEach(after_element => setAnimation(after_element));
                 }
             },parseFloat(speed+delay)*1000);
             setTimeout(()=>{
+                // Activate animation
                 el.classList.add(`animation-${speed}s`);
                 el.classList.add("animated");
                 el.classList.add(animation);
                 el.style.visibility = "visible";
-            },(delay+delay_of_after_el)*1000);
+            },(delay)*1000);
         }
         
         function scroll() {

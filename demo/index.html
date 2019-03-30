@@ -32,20 +32,14 @@
 				</div>
 			  </nav>
 			  <main>
-				<h1 class="amazing amazing-title" data-animation="fadeInDown" data-delay="0.25">Amazing.js</h1>
-				<h2 class="amazing" data-after="title" data-animation="fadeInUp">Revel Animations Plugin</h2>
-				<img class="mountain-1 amazing" data-animation="fadeInUp" data-mobile="false" src="https://www.mountainfilmalliance.org/wp-content/themes/iamf/images/mountains.png" alt="">
+				<h1 class="amazing amazing-title" data-animation="fadeInDown" data-speed="1" data-delay="0">Amazing.js</h1>
+				<h2 class="amazing amazing-subtitle" data-after="title" data-delay="0" data-speed="1" data-animation="fadeInUp">Revel Animations Plugin</h2>
+				<h3 class="amazing" data-after="subtitle" data-speed="0" data-delay="0" data-speed="0.25" data-animation="fadeInUp">By Nir Tzezana (@nirtz89)</h3>
 			  </main>
 	<script src="assets/js/bootstrap.min.js"></script>
 	<script src="../dist/script.js"></script>
 	<script>
-        const amazing = new Amazing(
-            {
-                defaultAnimation : "fadeIn",
-                defaultDelay: 0
-            },
-            true
-        );
+        const amazing = new Amazing({},true);
         amazing.init();	
 	</script>
 </body>

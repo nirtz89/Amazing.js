@@ -16,6 +16,9 @@ main {
     font-size: 6em; }
   main h2 {
     font-size: 2em; }
+  main h3 {
+    font-size: 1em;
+    color: whitesmoke; }
   main .mountain-1 {
     position: absolute;
     bottom: 0;
