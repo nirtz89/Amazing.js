@@ -15,14 +15,15 @@ function () {
 
     _classCallCheck(this, Amazing);
 
-    this.intervalWarehouse = [];
     this.config = config;
     this.config.useClass = this.config.useClass || "amazing";
     this.config.defaultAnimation = this.config.defaultAnimation || "fadeIn";
     this.config.defaultSpeed = this.config.defaultSpeed || 0.25;
     this.config.defaultDelay = this.config.defaultDelay || 0;
     this.config.allowMobile = this.config.allowMobile == false ? false : true;
+    this.config.callback = this.config.callback || false;
     this.debug = debug;
+    this.objectPool = [];
   }
 
   _createClass(Amazing, [{
@@ -52,14 +53,17 @@ function () {
       }
 
       function setAnimation(el) {
+        self.objectPool.push(el);
         var animation = el.dataset.animation || self.config.defaultAnimation;
         var delay = parseFloat(el.dataset.delay) || self.config.defaultDelay;
         var speed = parseFloat(el.dataset.speed) || self.config.defaultSpeed;
         var mobile = el.dataset.mobile || self.config.allowMobile;
+        var callback = el.dataset.callback || self.config.callback;
         if (mobile == "false" && self.isMobile()) return;
         setTimeout(function () {
           // Turn animation element to "finished" state
-          el.classList.add("finished"); // Find elements waiting for this to finish and activate animation on them
+          el.classList.add("finished");
+          if (callback) callback(); // Find elements waiting for this to finish and activate animation on them
 
           if (el.className.indexOf("".concat(self.config.useClass, "-")) > -1) {
             var amazingClass = el.className.split(" ").filter(function (v) {
@@ -87,7 +91,7 @@ function () {
         all_elements.forEach(function (el) {
           if (isScrolledIntoView(el)) {
             var after = el.dataset.after || false;
-            if (!after) setAnimation(el);
+            if (!after && !self.objectPool.includes(el)) setAnimation(el);
           }
         });
       }
