@@ -1,6 +1,6 @@
-main {
-  height: calc(100vh - 56px);
+main div.main {
   width: 100vw;
+  height: calc(100vh - 56px);
   display: flex;
   position: relative;
   justify-content: center;
@@ -12,19 +12,38 @@ main {
   -webkit-animation: Gradient 15s ease infinite;
   -moz-animation: Gradient 15s ease infinite;
   animation: Gradient 15s ease infinite; }
-  main h1 {
+  main div.main h1 {
     font-size: 6em; }
-  main h2 {
+  main div.main h2 {
     font-size: 2em; }
-  main h3 {
+  main div.main h3 {
     font-size: 1em;
     color: whitesmoke; }
-  main .mountain-1 {
+  main div.main .mountain-1 {
     position: absolute;
     bottom: 0;
     right: 0;
     width: 50%;
     z-index: 10; }
+
+main div.secondary {
+  background: linear-gradient(-45deg, #16222A, #3A6073, #232526, #414345);
+  background-size: 400% 400%;
+  -webkit-animation: Gradient 15s ease infinite;
+  -moz-animation: Gradient 15s ease infinite;
+  animation: Gradient 15s ease infinite;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column; }
+  main div.secondary h3 {
+    display: block;
+    color: #ffffff; }
+  main div.secondary span {
+    font-size: 3em; }
 
 @-webkit-keyframes Gradient {
   0% {
@@ -49,3 +68,9 @@ main {
     background-position: 100% 50%; }
   100% {
     background-position: 0% 50%; } }
+
+@media only screen and (max-width: 600px) {
+  div.main h1 {
+    font-size: 3.5em !important; }
+  div.main h2 {
+    font-size: 1.5em !important; } }

@@ -32,15 +32,25 @@
 				</div>
 			  </nav>
 			  <main>
-				<h1 class="amazing amazing-title" data-animation="fadeInDown" data-speed="1" data-delay="0">Amazing.js</h1>
-				<h2 class="amazing amazing-subtitle" data-after="title" data-delay="0" data-speed="1" data-animation="fadeInUp">Revel Animations Plugin</h2>
-				<h3 class="amazing" data-after="subtitle" data-speed="0" data-delay="0" data-speed="0.25" data-animation="fadeInUp">By Nir Tzezana (@nirtz89)</h3>
+				<div class="main">
+					<h1 class="amazing amazing-title" data-animation="fadeInDown" data-speed="1" data-delay="0">Amazing.js</h1>
+					<h2 class="amazing amazing-subtitle" data-after="title" data-delay="0" data-speed="1" data-animation="fadeInUp">Revel Animations Plugin</h2>
+					<h3 class="amazing" data-after="subtitle" data-speed="0" data-delay="0" data-speed="0.25" data-animation="fadeInUp">By Nir Tzezana (@nirtz89)</h3>
+				</div>
+				<div class="secondary">
+					<h3 class="amazing amazing-title1" data-animation="bounceIn">Easy to set up</h3>
+					<h3 class="amazing amazing-title2" data-after="title1" data-animation="bounceIn">Easy to config</h3>
+					<h3 class="amazing amazing-title3" data-after="title2" data-animation="bounceIn">No jQuery</h3>
+					<h3 class="amazing amazing-title4" data-after="title3" data-animation="bounceIn">Free to use</h3>
+				</div>
 			  </main>
 	<script src="assets/js/bootstrap.min.js"></script>
-	<script src="../dist/script.js"></script>
+	<script src="../src/script.js"></script>
 	<script>
-        const amazing = new Amazing({},true);
-        amazing.init();	
+        const amazing = new Amazing({
+			callback: function(){console.log("DONE!")}
+		},true);
+		amazing.init();
 	</script>
 </body>
 </html>

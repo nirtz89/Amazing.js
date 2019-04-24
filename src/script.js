@@ -1,14 +1,15 @@
 class Amazing {
 
     constructor(config = {}, debug = false) {
-        this.intervalWarehouse = [];
         this.config = config;
         this.config.useClass = this.config.useClass || "amazing";
         this.config.defaultAnimation = this.config.defaultAnimation || "fadeIn";
         this.config.defaultSpeed = this.config.defaultSpeed || 0.25;
         this.config.defaultDelay = this.config.defaultDelay || 0;
         this.config.allowMobile = (this.config.allowMobile == false) ? false : true;
+        this.config.callback = this.config.callback || false;
         this.debug = debug;
+        this.objectPool = [];
     }
 
     isMobile() { 
@@ -45,15 +46,18 @@ class Amazing {
         }
 
         function setAnimation(el) {
+            self.objectPool.push(el);
             let animation = el.dataset.animation || self.config.defaultAnimation;
             let delay = parseFloat(el.dataset.delay) || self.config.defaultDelay;
             let speed = parseFloat(el.dataset.speed) || self.config.defaultSpeed;
             let mobile = el.dataset.mobile || self.config.allowMobile;
+            let callback = el.dataset.callback || self.config.callback;
             if (mobile == "false" && self.isMobile())
                 return;
             setTimeout(()=>{
                 // Turn animation element to "finished" state
                 el.classList.add("finished");
+                if (callback) callback();
                 // Find elements waiting for this to finish and activate animation on them
                 if (el.className.indexOf(`${self.config.useClass}-`)>-1) {
                     let amazingClass = el.className.split(" ").filter((v)=>v.indexOf(`${self.config.useClass}-`)>-1)[0].replace(`${self.config.useClass}-`,"");
@@ -77,7 +81,7 @@ class Amazing {
             all_elements.forEach((el)=>{
               if (isScrolledIntoView(el)) {
                let after = el.dataset.after || false;
-               if (!after)
+               if (!after && !self.objectPool.includes(el))
                 setAnimation(el);
               }
             });
